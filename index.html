@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Moeratic Florist</title>
+</head>
+<body class="bg-slate-50 min-h-screen text-gray-800">
+
+  <header class="bg-white shadow-sm p-4 text-center border-b border-pink-100">
+    <h1 class="text-3xl font-extrabold text-pink-600 tracking-wide">Moeratic Florist</h1>
+    <p class="text-gray-500 text-sm mt-1">Pemesanan Rangkaian Bunga Online</p>
+  </header>
+
+  <main class="max-w-xl mx-auto p-4 md:p-6 my-6">
+    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+      <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">Formulir Pemesanan</h2>
+      
+      <form id="orderForm">
+        <div class="mb-4">
+          <label class="block text-sm font-semibold mb-1 text-gray-700">Tanggal Pengantaran</label>
+          <input type="date" id="tglPengantaran" required class="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-pink-500 outline-none">
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-sm font-semibold mb-1 text-gray-700">Nama Lengkap</label>
+          <input type="text" id="nama" placeholder="Nama Anda" required class="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-pink-500 outline-none">
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-sm font-semibold mb-1 text-gray-700">Nomor WA</label>
+          <input type="tel" id="whatsapp" placeholder="08123456789" required class="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-pink-500 outline-none">
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-sm font-semibold mb-1 text-gray-700">Pesanan</label>
+          <select id="pesanan" class="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-pink-500 outline-none">
+            <option value="Bouquet Mawar Red Classic">Bouquet Mawar Red Classic</option>
+            <option value="Bouquet Bunga Matahari">Bouquet Bunga Matahari</option>
+            <option value="Rangkaian Tulip Mix">Rangkaian Tulip Mix</option>
+            <option value="Custom Bouquet">Custom Bouquet</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-sm font-semibold mb-1 text-gray-700">Alamat Pengiriman</label>
+          <textarea id="alamat" rows="2" placeholder="Alamat lengkap penerima..." required class="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-pink-500 outline-none"></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-sm font-semibold mb-1 text-gray-700">Catatan Khusus</label>
+          <textarea id="catatan" rows="2" placeholder="Pesan kartu ucapan, nuansa warna..." class="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-pink-500 outline-none"></textarea>
+        </div>
+
+        <div class="mb-4 p-4 bg-pink-50 border border-pink-100 rounded-xl text-center">
+          <span class="block text-sm font-semibold text-pink-700 mb-1">Pembayaran QRIS</span>
+          <p class="text-xs text-gray-600">Transfer via QRIS toko kami dan unggah buktinya di bawah ini.</p>
+        </div>
+
+        <div class="mb-6">
+          <label class="block text-sm font-semibold mb-1 text-gray-700">Upload Bukti Bayar</label>
+          <input type="file" id="buktiBayar" accept="image/*" required class="w-full border rounded-lg p-2 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-pink-700 hover:file:bg-pink-100">
+        </div>
+
+        <button type="submit" id="btnSubmit" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-lg transition shadow-md hover:shadow-lg">
+          Kirim Pesanan
+        </button>
+      </form>
+
+      <div id="statusMsg" class="mt-4 text-center font-semibold hidden"></div>
+    </div>
+  </main>
+
+  <script>
+    // GANTI URL DI BAWAH DENGAN URL APPS SCRIPT ANDA
+    const SCRIPT_URL = "MASUKKAN_URL_APPS_SCRIPT_ANDA_DISINI";
+
+    document.getElementById('orderForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const btn = document.getElementById('btnSubmit');
+      const statusMsg = document.getElementById('statusMsg');
+      const fileInput = document.getElementById('buktiBayar');
+      
+      btn.innerText = "Mengunggah & Menyimpan...";
+      btn.disabled = true;
+      statusMsg.classList.add('hidden');
+
+      try {
+        let fileBase64 = "";
+        let fileName = "";
+
+        if (fileInput.files.length > 0) {
+          const file = fileInput.files[0];
+          fileName = file.name;
+          fileBase64 = await convertBase64(file);
+        }
+
+        const payload = {
+          tglPengantaran: document.getElementById('tglPengantaran').value,
+          nama: document.getElementById('nama').value,
+          whatsapp: document.getElementById('whatsapp').value,
+          pesanan: document.getElementById('pesanan').value,
+          alamat: document.getElementById('alamat').value,
+          catatan: document.getElementById('catatan').value,
+          statusQris: "QRIS (Sudah Transfer)",
+          buktiBayarBase64: fileBase64,
+          namaFile: fileName
+        };
+
+        // Kirim data ke Apps Script
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          // Gunakan text/plain untuk menghindari masalah CORS di Google Script
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+
+        // Tampilkan pesan sukses
+        statusMsg.innerText = "Pesanan berhasil dikirim!";
+        statusMsg.className = "mt-4 text-center font-medium text-green-600";
+        statusMsg.classList.remove('hidden');
+        document.getElementById('orderForm').reset();
+
+      } catch (err) {
+        statusMsg.innerText = "Terjadi kesalahan, coba lagi.";
+        statusMsg.className = "mt-4 text-center font-medium text-red-600";
+        statusMsg.classList.remove('hidden');
+      } finally {
+        btn.innerText = "Kirim Pesanan";
+        btn.disabled = false;
+      }
+    });
+
+    function convertBase64(file) {
+      return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => resolve(fileReader.result);
+        fileReader.onerror = (error) => reject(error);
+      });
+    }
+  </script>
+</body>
+</html>
