@@ -7,8 +7,8 @@
   <title>Moeratic Florist</title>
   <style>
     .color-scheme-dark::-webkit-calendar-picker-indicator { filter: invert(1); }
-    .fade-in { animation: fadeIn 0.4s ease-in-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.3s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body class="bg-zinc-950 min-h-screen text-zinc-300 font-sans selection:bg-zinc-700 selection:text-white flex flex-col justify-between">
@@ -71,65 +71,29 @@
         </button>
       </div>
 
-      <!-- HALAMAN 2: KATALOG (Awalnya Disembunyikan) -->
+      <!-- HALAMAN 2: KATALOG E-COMMERCE -->
       <div id="pageKatalog" class="fade-in hidden">
         <div class="text-center mb-6">
-          <h2 class="text-2xl font-bold text-white mb-2">Katalog Rangkaian</h2>
-          <p class="text-zinc-400 text-sm">Pilihan buket eksklusif untuk setiap momen berharga Anda.</p>
+          <h2 class="text-2xl font-bold text-white mb-2">Katalog Produk</h2>
+          <p class="text-zinc-400 text-sm">Pilih kategori rangkaian bunga di bawah ini.</p>
         </div>
 
-        <div class="space-y-6">
-          
-          <!-- Item Katalog 1 -->
-          <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
-            <!-- Ganti katalog1.jpg dengan nama file gambar produk Anda di GitHub nanti -->
-            <img src="promo1.jpg" alt="Bouquet Mawar Red Classic" class="w-full h-52 md:h-60 object-cover bg-zinc-800">
-            <div class="p-5">
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-white font-bold text-lg">Bouquet Mawar Red Classic</h3>
-                <span class="text-white font-extrabold text-sm bg-zinc-800 px-3 py-1 rounded-full border border-zinc-700">Rp 250.000</span>
-              </div>
-              <p class="text-zinc-400 text-sm leading-relaxed mb-4">Rangkaian mawar merah pilihan yang melambangkan keanggunan dan cinta sejati. Cocok untuk anniversary atau ulang tahun.</p>
-              <button onclick="pilihProduk('Bouquet Mawar Red Classic')" class="w-full bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-2.5 rounded-lg text-sm transition-all border border-zinc-700 uppercase tracking-wide">
-                Pesan Model Ini
-              </button>
-            </div>
-          </div>
+        <!-- Tampilan 1: Pilihan Kategori -->
+        <div id="kategoriContainer" class="grid grid-cols-1 gap-4">
+          <p class="text-center text-zinc-500 py-8">Memuat kategori...</p>
+        </div>
 
-          <!-- Item Katalog 2 -->
-          <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
-            <!-- Ganti katalog2.jpg dengan nama file gambar produk Anda di GitHub nanti -->
-            <img src="promo2.jpeg" alt="Bouquet Bunga Matahari" class="w-full h-52 md:h-60 object-cover bg-zinc-800">
-            <div class="p-5">
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-white font-bold text-lg">Bouquet Bunga Matahari</h3>
-                <span class="text-white font-extrabold text-sm bg-zinc-800 px-3 py-1 rounded-full border border-zinc-700">Rp 220.000</span>
-              </div>
-              <p class="text-zinc-400 text-sm leading-relaxed mb-4">Buket ceria penuh energi positif dengan bunga matahari segar pilihan. Sangat pas untuk wisuda atau ucapan selamat.</p>
-              <button onclick="pilihProduk('Bouquet Bunga Matahari')" class="w-full bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-2.5 rounded-lg text-sm transition-all border border-zinc-700 uppercase tracking-wide">
-                Pesan Model Ini
-              </button>
-            </div>
-          </div>
-
-          <!-- Item Katalog 3 -->
-          <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
-            <div class="p-5">
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-white font-bold text-lg">Custom Bouquet</h3>
-                <span class="text-white font-extrabold text-sm bg-zinc-800 px-3 py-1 rounded-full border border-zinc-700">Menyesuaikan</span>
-              </div>
-              <p class="text-zinc-400 text-sm leading-relaxed mb-4">Punya konsep atau bujet sendiri? Konsultasikan keinginan rangkaian bunga Anda bersama tim kami.</p>
-              <button onclick="pilihProduk('Custom Bouquet')" class="w-full bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-2.5 rounded-lg text-sm transition-all border border-zinc-700 uppercase tracking-wide">
-                Pesan Model Ini
-              </button>
-            </div>
-          </div>
-
+        <!-- Tampilan 2: Daftar Produk dalam Kategori (Disembunyikan Awalnya) -->
+        <div id="produkSection" class="hidden">
+          <button onclick="kembaliKeKategori()" class="mb-5 flex items-center text-xs font-bold bg-zinc-900 hover:bg-zinc-800 text-zinc-300 px-4 py-2.5 rounded-lg border border-zinc-800 transition-all">
+            &larr; Kembali ke Daftar Kategori
+          </button>
+          <h3 id="judulKategoriAktif" class="text-xl font-bold text-white mb-4 uppercase tracking-wider"></h3>
+          <div id="produkContainer" class="space-y-6"></div>
         </div>
       </div>
 
-      <!-- HALAMAN 3: FORMULIR PEMESANAN (Disembunyikan) -->
+      <!-- HALAMAN 3: FORMULIR PEMESANAN -->
       <div id="pageForm" class="fade-in hidden">
         <div class="bg-zinc-900 p-6 rounded-2xl shadow-2xl border border-zinc-800">
           <h2 class="text-xl font-bold text-white mb-6 text-center uppercase tracking-wider">Formulir Pemesanan</h2>
@@ -153,10 +117,7 @@
             <div class="mb-5">
               <label class="block text-sm font-semibold mb-2 text-zinc-400">Pesanan</label>
               <select id="pesanan" class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-zinc-500 outline-none transition-all">
-                <option value="Bouquet Mawar Red Classic">Bouquet Mawar Red Classic</option>
-                <option value="Bouquet Bunga Matahari">Bouquet Bunga Matahari</option>
-                <option value="Rangkaian Tulip Mix">Rangkaian Tulip Mix</option>
-                <option value="Custom Bouquet">Custom Bouquet</option>
+                <!-- Otomatis dari Spreadsheet -->
               </select>
             </div>
 
@@ -220,6 +181,12 @@
   </footer>
 
   <script>
+    // URL Web App Katalog dan Pesanan sudah terpasang otomatis
+    const KATALOG_API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnTdOT8TLruqw39jDRQ9DqeHqqboFAWXh1Ir0eAmLozNlcvEjuRh2AzyaTEJJufL1DuYBLiGR5etfKKen70ZgEk4IgPvrvUeEPUMhGeGn_j49FRwSE1Yb52gZn0jIUOL0XTgAOna-p8hvQmLNlzB9_QihPKsYb8lBmScC7EVMEtW5cCd6S6_CJ0f-vWQ0MThJJJuTyRMAfO9Xd6Ngr9B-u2HfI1VAspVI_FEvEcSO9Vk1a_w0eeXfxxNsh8fERgv1oFgPSffjHxuPhnFNcZ0f6et07n5QA&lib=MK5Fy2fkrHCEQ3SI0XTuF_24v8nHuSLLZ";
+    const SCRIPT_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnR5Y-rZn7HkBHpy9RlEVCZSlnttsnn3_nyZFwjaYLODqxVUY34lL5X93Jxtl6YUlCq0T3x_v8hPC-c2F_MPRTSSu5srEbAs_SAymov--XHBY1s5ZgImVAXdiybkpQ1zEmxfgFUWFxCKItL7BX4MXe5a_8hUb9Fbci9ep3g5vbZ1G71OHxi1SHhg9WUO-Y7YZP9RT_tDH8EsGK43k_mA6eQESEP1rPToNqZSlxCZH7tPtHPSKi6eAhsZztdIkRggXKQMhF0a108eMo-GU6tTgsVZiznJgQ&lib=MK5Fy2fkrHCEQ3SI0XTuF_24v8nHuSLLZ";
+
+    let dataKatalogGlobal = [];
+
     const btnMenuInfo = document.getElementById('btnMenuInfo');
     const btnMenuKatalog = document.getElementById('btnMenuKatalog');
     const btnMenuForm = document.getElementById('btnMenuForm');
@@ -230,15 +197,12 @@
     const pageForm = document.getElementById('pageForm');
 
     function setActiveTab(active) {
-      // Reset semua tombol ke style pasif
       [btnMenuInfo, btnMenuKatalog, btnMenuForm].forEach(btn => {
         btn.classList.add('text-zinc-500', 'border-transparent');
         btn.classList.remove('text-white', 'border-white');
       });
-      // Sembunyikan semua halaman
       [pageInfo, pageKatalog, pageForm].forEach(page => page.classList.add('hidden'));
 
-      // Aktifkan yang dipilih
       if(active === 'info') {
         pageInfo.classList.remove('hidden');
         btnMenuInfo.classList.add('text-white', 'border-white');
@@ -247,6 +211,7 @@
         pageKatalog.classList.remove('hidden');
         btnMenuKatalog.classList.add('text-white', 'border-white');
         btnMenuKatalog.classList.remove('text-zinc-500', 'border-transparent');
+        kembaliKeKategori();
       } else if(active === 'form') {
         pageForm.classList.remove('hidden');
         btnMenuForm.classList.add('text-white', 'border-white');
@@ -260,16 +225,104 @@
     btnMenuForm.addEventListener('click', () => setActiveTab('form'));
     if(btnPesanDariInfo) btnPesanDariInfo.addEventListener('click', () => setActiveTab('form'));
 
-    // Fungsi pintar: Ketika tombol "Pesan Model Ini" di katalog diklik,
-    // ia akan otomatis pindah ke tab Pesan dan memilih produk tersebut di dropdown.
     function pilihProduk(namaProduk) {
       setActiveTab('form');
       const selectPesanan = document.getElementById('pesanan');
       selectPesanan.value = namaProduk;
     }
 
-    // --- SCRIPT PENGIRIMAN GOOGLE SHEETS ---
-    const SCRIPT_URL = "MASUKKAN_URL_APPS_SCRIPT_ANDA_DISINI";
+    async function muatKatalog() {
+      const kategoriContainer = document.getElementById('kategoriContainer');
+      const selectPesanan = document.getElementById('pesanan');
+
+      try {
+        const response = await fetch(KATALOG_API_URL);
+        dataKatalogGlobal = await response.json();
+
+        kategoriContainer.innerHTML = "";
+        selectPesanan.innerHTML = "";
+
+        if (dataKatalogGlobal.length === 0) {
+          kategoriContainer.innerHTML = `<p class="text-center text-zinc-500 py-8">Belum ada produk di katalog.</p>`;
+          return;
+        }
+
+        let kategoriMap = {};
+        dataKatalogGlobal.forEach(item => {
+          let kat = item.kategori ? item.kategori.trim() : "Lainnya";
+          if (!kategoriMap[kat]) {
+            kategoriMap[kat] = [];
+          }
+          kategoriMap[kat].push(item);
+
+          let option = document.createElement('option');
+          option.value = item.judul;
+          option.textContent = `${item.judul} (${item.harga})`;
+          selectPesanan.appendChild(option);
+        });
+
+        Object.keys(kategoriMap).forEach(namaKategori => {
+          let jumlahItem = kategoriMap[namaKategori].length;
+          let thumbImg = kategoriMap[namaKategori][0].gambar || '';
+
+          let cardKat = document.createElement('div');
+          cardKat.className = "bg-zinc-900 border border-zinc-800 hover:border-zinc-600 rounded-2xl overflow-hidden shadow-xl cursor-pointer transition-all flex items-center p-4";
+          cardKat.onclick = () => bukaKategori(namaKategori);
+          
+          cardKat.innerHTML = `
+            ${thumbImg ? `<img src="${thumbImg}" alt="${namaKategori}" class="w-16 h-16 rounded-xl object-cover bg-zinc-800 mr-4">` : ''}
+            <div class="flex-grow">
+              <h3 class="text-white font-bold text-lg mb-1">${namaKategori}</h3>
+              <p class="text-zinc-400 text-xs">${jumlahItem} Pilihan Rangkaian</p>
+            </div>
+            <span class="text-zinc-500 font-bold text-lg">&rsaquo;</span>
+          `;
+          kategoriContainer.appendChild(cardKat);
+        });
+
+      } catch (err) {
+        kategoriContainer.innerHTML = `<p class="text-center text-red-400 py-8">Gagal memuat data dari Spreadsheet.</p>`;
+      }
+    }
+
+    function bukaKategori(namaKategori) {
+      document.getElementById('kategoriContainer').classList.add('hidden');
+      document.getElementById('produkSection').classList.remove('hidden');
+      document.getElementById('judulKategoriAktif').textContent = namaKategori;
+
+      const produkContainer = document.getElementById('produkContainer');
+      produkContainer.innerHTML = "";
+
+      let produkPilihan = dataKatalogGlobal.filter(item => item.kategori && item.kategori.trim() === namaKategori);
+
+      produkPilihan.forEach(item => {
+        let cardProd = document.createElement('div');
+        cardProd.className = "bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl";
+        cardProd.innerHTML = `
+          ${item.gambar ? `<img src="${item.gambar}" alt="${item.judul}" class="w-full h-52 md:h-60 object-cover bg-zinc-800">` : ''}
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="text-white font-bold text-lg">${item.judul}</h4>
+              <span class="text-white font-extrabold text-sm bg-zinc-800 px-3 py-1 rounded-full border border-zinc-700">${item.harga}</span>
+            </div>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-4">${item.deskripsi}</p>
+            <button onclick="pilihProduk('${item.judul.replace(/'/g, "\\'")}')" class="w-full bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-2.5 rounded-lg text-sm transition-all border border-zinc-700 uppercase tracking-wide">
+              Pesan Model Ini
+            </button>
+          </div>
+        `;
+        produkContainer.appendChild(cardProd);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function kembaliKeKategori() {
+      document.getElementById('produkSection').classList.add('hidden');
+      document.getElementById('kategoriContainer').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    muatKatalog();
 
     document.getElementById('orderForm').addEventListener('submit', async function(e) {
       e.preventDefault();
