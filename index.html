@@ -15,7 +15,6 @@
 
   <!-- Header -->
   <header class="bg-zinc-900 shadow-sm p-5 text-center border-b border-zinc-800">
-    <!-- PASTIKAN NAMA FILE LOGO SESUAI -->
     <img src="logo.png" alt="Moeratic Logo" class="h-12 md:h-16 mx-auto mb-1 object-contain">
     <p class="text-zinc-500 text-sm mt-2 tracking-wide">Pemesanan Rangkaian Bunga Online</p>
   </header>
@@ -32,30 +31,67 @@
 
   <main class="max-w-xl mx-auto p-4 md:p-6 my-4">
     
-    <!-- HALAMAN 1: INFO & PROMO -->
+    <!-- HALAMAN 1: INFO, PROMO & KONTAK -->
     <div id="pageInfo" class="fade-in block">
-      <div class="bg-zinc-900 p-6 md:p-8 rounded-2xl shadow-2xl border border-zinc-800 text-center mb-6">
+      
+      <!-- Welcome Text -->
+      <div class="bg-zinc-900 p-6 rounded-2xl shadow-xl border border-zinc-800 text-center mb-6">
         <h2 class="text-2xl font-bold text-white mb-3">Selamat Datang di Moeratic</h2>
-        <p class="text-zinc-400 text-sm leading-relaxed mb-8">
+        <p class="text-zinc-400 text-sm leading-relaxed">
           Kami merangkai setiap tangkai dengan ketelitian untuk memastikan momen spesial Anda tersampaikan dengan sempurna. Estetika, kualitas, dan ketepatan waktu adalah prioritas kami.
         </p>
+      </div>
+
+      <!-- KUMPULAN PROMO -->
+      <div class="space-y-6 mb-6">
         
-        <div class="bg-zinc-950 border border-zinc-800 p-5 rounded-xl mb-8 text-left">
-          <div class="flex items-center justify-between mb-2">
-            <span class="block text-sm font-extrabold text-white tracking-widest uppercase">Promo Spesial</span>
-            <span class="bg-white text-black text-[10px] font-bold px-2 py-1 rounded-full">Agustus 2026</span>
+        <!-- Promo 1 -->
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
+          <!-- Ganti promo1.jpg dengan nama gambar promo Anda di GitHub -->
+          <img src="promo1.jpg" alt="Promo Custom Bouquet" class="w-full h-48 md:h-56 object-cover bg-zinc-800">
+          <div class="p-5">
+            <span class="bg-white text-black text-[10px] font-bold px-2 py-1 rounded-full mb-3 inline-block">Agustus 2026</span>
+            <h3 class="text-white font-bold text-lg mb-2">Diskon 10% Custom Bouquet</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">Nikmati potongan harga khusus untuk pemesanan buket kustom langsung melalui website kami. Berlaku untuk pengiriman area dalam kota.</p>
           </div>
-          <p class="text-zinc-300 text-sm font-medium mb-1">Diskon 10% Custom Bouquet</p>
-          <p class="text-zinc-500 text-xs leading-relaxed">Nikmati potongan harga khusus untuk pemesanan buket kustom langsung melalui website kami. Berlaku untuk pengiriman area dalam kota.</p>
         </div>
 
-        <button id="btnPesanSekarang" class="w-full bg-white hover:bg-zinc-200 text-black font-extrabold tracking-wide py-3.5 rounded-lg transition-all shadow-lg uppercase">
-          Buat Pesanan Sekarang
-        </button>
+        <!-- Promo 2 -->
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
+          <!-- Ganti promo2.jpg dengan nama gambar promo Anda di GitHub -->
+          <img src="promo2.jpg" alt="Promo Free Ongkir" class="w-full h-48 md:h-56 object-cover bg-zinc-800">
+          <div class="p-5">
+            <span class="bg-white text-black text-[10px] font-bold px-2 py-1 rounded-full mb-3 inline-block">Spesial Weekend</span>
+            <h3 class="text-white font-bold text-lg mb-2">Gratis Pengiriman Weekend</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">Pesan hari ini untuk pengiriman hari Sabtu atau Minggu dan dapatkan gratis ongkos kirim tanpa minimum pembelian.</p>
+          </div>
+        </div>
+
       </div>
+
+      <!-- Tombol Pesan Utama -->
+      <button id="btnPesanSekarang" class="w-full bg-white hover:bg-zinc-200 text-black font-extrabold tracking-wide py-4 rounded-xl transition-all shadow-lg uppercase mb-8">
+        Buat Pesanan Sekarang
+      </button>
+
+      <!-- Sosial Media & Kontak -->
+      <div class="bg-zinc-900 p-6 rounded-2xl shadow-xl border border-zinc-800 text-center mb-4">
+        <h3 class="text-sm font-bold text-white mb-4 uppercase tracking-widest border-b border-zinc-800 pb-3">Tetap Terhubung</h3>
+        <div class="flex flex-col gap-3">
+          <!-- Ganti href dengan link Instagram Anda -->
+          <a href="https://instagram.com/moeraticflorist" target="_blank" class="block w-full bg-zinc-950 border border-zinc-800 hover:border-zinc-600 text-zinc-300 py-3 rounded-lg text-sm font-semibold transition-all">
+            @moeraticflorist di Instagram
+          </a>
+          <!-- Ganti href dengan link WA (wa.me) Anda -->
+          <a href="https://wa.me/628123456789" target="_blank" class="block w-full bg-zinc-950 border border-zinc-800 hover:border-zinc-600 text-zinc-300 py-3 rounded-lg text-sm font-semibold transition-all">
+            Hubungi Admin (WhatsApp)
+          </a>
+        </div>
+      </div>
+
     </div>
 
-    <!-- HALAMAN 2: FORMULIR PEMESANAN (Awalnya Disembunyikan) -->
+    <!-- HALAMAN 2: FORMULIR PEMESANAN (Disembunyikan) -->
     <div id="pageForm" class="fade-in hidden">
       <div class="bg-zinc-900 p-6 rounded-2xl shadow-2xl border border-zinc-800">
         <h2 class="text-xl font-bold text-white mb-6 text-center uppercase tracking-wider">Formulir Pemesanan</h2>
@@ -96,13 +132,10 @@
             <textarea id="catatan" rows="2" placeholder="Pesan pada kartu ucapan, dll..." class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:ring-2 focus:ring-zinc-500 outline-none transition-all"></textarea>
           </div>
 
-          <!-- Box QRIS Monochrome -->
+          <!-- Box QRIS -->
           <div class="mb-5 p-5 bg-zinc-950 border border-zinc-800 rounded-xl text-center flex flex-col items-center">
             <span class="block text-sm font-bold text-white mb-4 uppercase tracking-widest">Pembayaran QRIS</span>
-            
-            <!-- PASTIKAN NAMA FILE GAMBAR QRIS SESUAI -->
             <img src="qris.png" alt="QRIS Moeratic Florist" class="w-48 h-auto mb-4 rounded-lg border border-zinc-700 p-2 bg-white">
-            
             <p class="text-xs text-zinc-500">Scan kode QR di atas untuk transfer, lalu unggah buktinya di bawah ini.</p>
           </div>
 
@@ -122,7 +155,6 @@
   </main>
 
   <script>
-    // --- LOGIKA NAVIGASI TAB ---
     const btnMenuInfo = document.getElementById('btnMenuInfo');
     const btnMenuForm = document.getElementById('btnMenuForm');
     const btnPesanSekarang = document.getElementById('btnPesanSekarang');
@@ -132,12 +164,8 @@
     function showInfo() {
       pageInfo.classList.remove('hidden');
       pageForm.classList.add('hidden');
-      
-      // Styling Tab Aktif
       btnMenuInfo.classList.add('text-white', 'border-white');
       btnMenuInfo.classList.remove('text-zinc-500', 'border-transparent');
-      
-      // Styling Tab Pasif
       btnMenuForm.classList.add('text-zinc-500', 'border-transparent');
       btnMenuForm.classList.remove('text-white', 'border-white');
     }
@@ -145,23 +173,18 @@
     function showForm() {
       pageForm.classList.remove('hidden');
       pageInfo.classList.add('hidden');
-      
-      // Styling Tab Aktif
       btnMenuForm.classList.add('text-white', 'border-white');
       btnMenuForm.classList.remove('text-zinc-500', 'border-transparent');
-      
-      // Styling Tab Pasif
       btnMenuInfo.classList.add('text-zinc-500', 'border-transparent');
       btnMenuInfo.classList.remove('text-white', 'border-white');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     btnMenuInfo.addEventListener('click', showInfo);
     btnMenuForm.addEventListener('click', showForm);
-    btnPesanSekarang.addEventListener('click', showForm); // Tombol besar di halaman Info
+    btnPesanSekarang.addEventListener('click', showForm);
 
-
-    // --- LOGIKA FORMULIR (TIDAK BERUBAH) ---
-    // 1. GANTI URL DI BAWAH DENGAN URL APPS SCRIPT ANDA
+    // GANTI URL DI BAWAH DENGAN URL APPS SCRIPT ANDA
     const SCRIPT_URL = "MASUKKAN_URL_APPS_SCRIPT_ANDA_DISINI";
 
     document.getElementById('orderForm').addEventListener('submit', async function(e) {
