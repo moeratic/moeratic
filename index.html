@@ -11,148 +11,151 @@
     @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
-<body class="bg-zinc-950 min-h-screen text-zinc-300 font-sans selection:bg-zinc-700 selection:text-white">
+<body class="bg-zinc-950 min-h-screen text-zinc-300 font-sans selection:bg-zinc-700 selection:text-white flex flex-col justify-between">
 
-  <!-- Header -->
-  <header class="bg-zinc-900 shadow-sm p-5 text-center border-b border-zinc-800">
-    <img src="logo.png" alt="Moeratic Logo" class="h-12 md:h-16 mx-auto mb-1 object-contain">
-    <p class="text-zinc-500 text-sm mt-2 tracking-wide">Pemesanan Rangkaian Bunga Online</p>
-  </header>
+  <div>
+    <!-- Header -->
+    <header class="bg-zinc-900 shadow-sm p-5 text-center border-b border-zinc-800">
+      <img src="logo.png" alt="Moeratic Logo" class="h-12 md:h-16 mx-auto mb-1 object-contain">
+      <p class="text-zinc-500 text-sm mt-2 tracking-wide">Pemesanan Rangkaian Bunga Online</p>
+    </header>
 
-  <!-- Navigasi Menu -->
-  <nav class="flex justify-center border-b border-zinc-800 bg-zinc-900/50 backdrop-blur-sm sticky top-0 z-10">
-    <button id="btnMenuInfo" class="px-6 py-4 text-sm font-bold text-white border-b-2 border-white transition-all w-1/2 md:w-auto text-center uppercase tracking-wider">
-      Info & Promo
-    </button>
-    <button id="btnMenuForm" class="px-6 py-4 text-sm font-bold text-zinc-500 border-b-2 border-transparent hover:text-zinc-300 transition-all w-1/2 md:w-auto text-center uppercase tracking-wider">
-      Pesan
-    </button>
-  </nav>
-
-  <main class="max-w-xl mx-auto p-4 md:p-6 my-4">
-    
-    <!-- HALAMAN 1: INFO, PROMO & KONTAK -->
-    <div id="pageInfo" class="fade-in block">
-      
-      <!-- Welcome Text -->
-      <div class="bg-zinc-900 p-6 rounded-2xl shadow-xl border border-zinc-800 text-center mb-6">
-        <h2 class="text-2xl font-bold text-white mb-3">Selamat Datang di Moeratic</h2>
-        <p class="text-zinc-400 text-sm leading-relaxed">
-          Kami merangkai setiap tangkai dengan ketelitian untuk memastikan momen spesial Anda tersampaikan dengan sempurna. Estetika, kualitas, dan ketepatan waktu adalah prioritas kami.
-        </p>
-      </div>
-
-      <!-- KUMPULAN PROMO -->
-      <div class="space-y-6 mb-6">
-        
-        <!-- Promo 1 -->
-        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
-          <!-- Ganti promo1.jpg dengan nama gambar promo Anda di GitHub -->
-          <img src="promo1.jpg" alt="Promo Custom Bouquet" class="w-full h-48 md:h-56 object-cover bg-zinc-800">
-          <div class="p-5">
-            <span class="bg-white text-black text-[10px] font-bold px-2 py-1 rounded-full mb-3 inline-block">Agustus 2026</span>
-            <h3 class="text-white font-bold text-lg mb-2">Diskon 10% Custom Bouquet</h3>
-            <p class="text-zinc-400 text-sm leading-relaxed">Nikmati potongan harga khusus untuk pemesanan buket kustom langsung melalui website kami. Berlaku untuk pengiriman area dalam kota.</p>
-          </div>
-        </div>
-
-        <!-- Promo 2 -->
-        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
-          <!-- Ganti promo2.jpeg dengan nama gambar promo Anda di GitHub -->
-          <img src="promo2.jpeg" alt="Promo Free Ongkir" class="w-full h-48 md:h-56 object-cover bg-zinc-800">
-          <div class="p-5">
-            <span class="bg-white text-black text-[10px] font-bold px-2 py-1 rounded-full mb-3 inline-block">Spesial Weekend</span>
-            <h3 class="text-white font-bold text-lg mb-2">Gratis Pengiriman Weekend</h3>
-            <p class="text-zinc-400 text-sm leading-relaxed">Pesan hari ini untuk pengiriman hari Sabtu atau Minggu dan dapatkan gratis ongkos kirim tanpa minimum pembelian.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Tombol Pesan Utama -->
-      <button id="btnPesanSekarang" class="w-full bg-white hover:bg-zinc-200 text-black font-extrabold tracking-wide py-4 rounded-xl transition-all shadow-lg uppercase mb-8">
-        Buat Pesanan Sekarang
+    <!-- Navigasi Menu -->
+    <nav class="flex justify-center border-b border-zinc-800 bg-zinc-900/50 backdrop-blur-sm sticky top-0 z-10">
+      <button id="btnMenuInfo" class="px-6 py-4 text-sm font-bold text-white border-b-2 border-white transition-all w-1/2 md:w-auto text-center uppercase tracking-wider">
+        Info & Promo
       </button>
+      <button id="btnMenuForm" class="px-6 py-4 text-sm font-bold text-zinc-500 border-b-2 border-transparent hover:text-zinc-300 transition-all w-1/2 md:w-auto text-center uppercase tracking-wider">
+        Pesan
+      </button>
+    </nav>
 
-      <!-- Sosial Media & Kontak -->
-      <div class="bg-zinc-900 p-6 rounded-2xl shadow-xl border border-zinc-800 text-center mb-4">
-        <h3 class="text-sm font-bold text-white mb-4 uppercase tracking-widest border-b border-zinc-800 pb-3">Tetap Terhubung</h3>
-        <div class="flex flex-col gap-3">
-          <!-- Ganti href dengan link Instagram Anda -->
-          <a href="https://instagram.com/moeraticflorist" target="_blank" class="block w-full bg-zinc-950 border border-zinc-800 hover:border-zinc-600 text-zinc-300 py-3 rounded-lg text-sm font-semibold transition-all">
-            @moeraticflorist di Instagram
-          </a>
-          <!-- Ganti href dengan link WA (wa.me) Anda -->
-          <a href="https://wa.me/628123456789" target="_blank" class="block w-full bg-zinc-950 border border-zinc-800 hover:border-zinc-600 text-zinc-300 py-3 rounded-lg text-sm font-semibold transition-all">
-            Hubungi Admin (WhatsApp)
-          </a>
+    <main class="max-w-xl mx-auto p-4 md:p-6 my-4">
+      
+      <!-- HALAMAN 1: INFO & PROMO -->
+      <div id="pageInfo" class="fade-in block">
+        
+        <!-- Welcome Text -->
+        <div class="bg-zinc-900 p-6 rounded-2xl shadow-xl border border-zinc-800 text-center mb-6">
+          <h2 class="text-2xl font-bold text-white mb-3">Selamat Datang di Moeratic</h2>
+          <p class="text-zinc-400 text-sm leading-relaxed">
+            Kami merangkai setiap tangkai dengan ketelitian untuk memastikan momen spesial Anda tersampaikan dengan sempurna. Estetika, kualitas, dan ketepatan waktu adalah prioritas kami.
+          </p>
+        </div>
+
+        <!-- KUMPULAN PROMO -->
+        <div class="space-y-6 mb-6">
+          
+          <!-- Promo 1 -->
+          <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
+            <img src="promo1.jpg" alt="Promo Custom Bouquet" class="w-full h-48 md:h-56 object-cover bg-zinc-800">
+            <div class="p-5">
+              <span class="bg-white text-black text-[10px] font-bold px-2 py-1 rounded-full mb-3 inline-block">Agustus 2026</span>
+              <h3 class="text-white font-bold text-lg mb-2">Diskon 10% Custom Bouquet</h3>
+              <p class="text-zinc-400 text-sm leading-relaxed">Nikmati potongan harga khusus untuk pemesanan buket kustom langsung melalui website kami. Berlaku untuk pengiriman area dalam kota.</p>
+            </div>
+          </div>
+
+          <!-- Promo 2 -->
+          <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
+            <img src="promo2.jpeg" alt="Promo Free Ongkir" class="w-full h-48 md:h-56 object-cover bg-zinc-800">
+            <div class="p-5">
+              <span class="bg-white text-black text-[10px] font-bold px-2 py-1 rounded-full mb-3 inline-block">Spesial Weekend</span>
+              <h3 class="text-white font-bold text-lg mb-2">Gratis Pengiriman Weekend</h3>
+              <p class="text-zinc-400 text-sm leading-relaxed">Pesan hari ini untuk pengiriman hari Sabtu atau Minggu dan dapatkan gratis ongkos kirim tanpa minimum pembelian.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tombol Pesan Utama -->
+        <button id="btnPesanSekarang" class="w-full bg-white hover:bg-zinc-200 text-black font-extrabold tracking-wide py-4 rounded-xl transition-all shadow-lg uppercase">
+          Buat Pesanan Sekarang
+        </button>
+
+      </div>
+
+      <!-- HALAMAN 2: FORMULIR PEMESANAN (Disembunyikan) -->
+      <div id="pageForm" class="fade-in hidden">
+        <div class="bg-zinc-900 p-6 rounded-2xl shadow-2xl border border-zinc-800">
+          <h2 class="text-xl font-bold text-white mb-6 text-center uppercase tracking-wider">Formulir Pemesanan</h2>
+          
+          <form id="orderForm">
+            <div class="mb-5">
+              <label class="block text-sm font-semibold mb-2 text-zinc-400">Tanggal Pengiriman</label>
+              <input type="date" id="tglPengantaran" required class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-zinc-500 focus:border-zinc-500 outline-none transition-all color-scheme-dark">
+            </div>
+
+            <div class="mb-5">
+              <label class="block text-sm font-semibold mb-2 text-zinc-400">Nama Lengkap</label>
+              <input type="text" id="nama" placeholder="Nama Anda" required class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:ring-2 focus:ring-zinc-500 outline-none transition-all">
+            </div>
+
+            <div class="mb-5">
+              <label class="block text-sm font-semibold mb-2 text-zinc-400">Nomor WA</label>
+              <input type="tel" id="whatsapp" placeholder="08123456789" required class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:ring-2 focus:ring-zinc-500 outline-none transition-all">
+            </div>
+
+            <div class="mb-5">
+              <label class="block text-sm font-semibold mb-2 text-zinc-400">Pesanan</label>
+              <select id="pesanan" class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-zinc-500 outline-none transition-all">
+                <option value="Bouquet Mawar Red Classic">Bouquet Mawar Red Classic</option>
+                <option value="Bouquet Bunga Matahari">Bouquet Bunga Matahari</option>
+                <option value="Rangkaian Tulip Mix">Rangkaian Tulip Mix</option>
+                <option value="Custom Bouquet">Custom Bouquet</option>
+              </select>
+            </div>
+
+            <div class="mb-5">
+              <label class="block text-sm font-semibold mb-2 text-zinc-400">Alamat Pengiriman</label>
+              <textarea id="alamat" rows="2" placeholder="Alamat lengkap penerima..." required class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:ring-2 focus:ring-zinc-500 outline-none transition-all"></textarea>
+            </div>
+
+            <div class="mb-5">
+              <label class="block text-sm font-semibold mb-2 text-zinc-400">Catatan Khusus</label>
+              <textarea id="catatan" rows="2" placeholder="Pesan pada kartu ucapan, dll..." class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:ring-2 focus:ring-zinc-500 outline-none transition-all"></textarea>
+            </div>
+
+            <!-- Box QRIS -->
+            <div class="mb-5 p-5 bg-zinc-950 border border-zinc-800 rounded-xl text-center flex flex-col items-center">
+              <span class="block text-sm font-bold text-white mb-4 uppercase tracking-widest">Pembayaran QRIS</span>
+              <img src="qris.png" alt="QRIS Moeratic Florist" class="w-48 h-auto mb-4 rounded-lg border border-zinc-700 p-2 bg-white">
+              <p class="text-xs text-zinc-500">Scan kode QR di atas untuk transfer, lalu unggah buktinya di bawah ini.</p>
+            </div>
+
+            <div class="mb-8">
+              <label class="block text-sm font-semibold mb-2 text-zinc-400">Upload Bukti Bayar</label>
+              <input type="file" id="buktiBayar" accept="image/*" required class="w-full border border-zinc-700 rounded-lg p-2 text-sm text-zinc-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-bold file:bg-white file:text-black hover:file:bg-zinc-200 transition-all bg-zinc-950">
+            </div>
+
+            <button type="submit" id="btnSubmit" class="w-full bg-white hover:bg-zinc-200 text-black font-extrabold tracking-wide py-3.5 rounded-lg transition-all shadow-lg uppercase">
+              Kirim Pesanan
+            </button>
+          </form>
+
+          <div id="statusMsg" class="mt-5 text-center font-semibold hidden"></div>
         </div>
       </div>
+    </main>
+  </div>
 
-    </div>
-
-    <!-- HALAMAN 2: FORMULIR PEMESANAN (Disembunyikan) -->
-    <div id="pageForm" class="fade-in hidden">
-      <div class="bg-zinc-900 p-6 rounded-2xl shadow-2xl border border-zinc-800">
-        <h2 class="text-xl font-bold text-white mb-6 text-center uppercase tracking-wider">Formulir Pemesanan</h2>
-        
-        <form id="orderForm">
-          <div class="mb-5">
-            <label class="block text-sm font-semibold mb-2 text-zinc-400">Tanggal Pengiriman</label>
-            <input type="date" id="tglPengantaran" required class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-zinc-500 focus:border-zinc-500 outline-none transition-all color-scheme-dark">
-          </div>
-
-          <div class="mb-5">
-            <label class="block text-sm font-semibold mb-2 text-zinc-400">Nama Lengkap</label>
-            <input type="text" id="nama" placeholder="Nama Anda" required class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:ring-2 focus:ring-zinc-500 outline-none transition-all">
-          </div>
-
-          <div class="mb-5">
-            <label class="block text-sm font-semibold mb-2 text-zinc-400">Nomor WA</label>
-            <input type="tel" id="whatsapp" placeholder="08123456789" required class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:ring-2 focus:ring-zinc-500 outline-none transition-all">
-          </div>
-
-          <div class="mb-5">
-            <label class="block text-sm font-semibold mb-2 text-zinc-400">Pesanan</label>
-            <select id="pesanan" class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-zinc-500 outline-none transition-all">
-              <option value="Bouquet Mawar Red Classic">Bouquet Mawar Red Classic</option>
-              <option value="Bouquet Bunga Matahari">Bouquet Bunga Matahari</option>
-              <option value="Rangkaian Tulip Mix">Rangkaian Tulip Mix</option>
-              <option value="Custom Bouquet">Custom Bouquet</option>
-            </select>
-          </div>
-
-          <div class="mb-5">
-            <label class="block text-sm font-semibold mb-2 text-zinc-400">Alamat Pengiriman</label>
-            <textarea id="alamat" rows="2" placeholder="Alamat lengkap penerima..." required class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:ring-2 focus:ring-zinc-500 outline-none transition-all"></textarea>
-          </div>
-
-          <div class="mb-5">
-            <label class="block text-sm font-semibold mb-2 text-zinc-400">Catatan Khusus</label>
-            <textarea id="catatan" rows="2" placeholder="Pesan pada kartu ucapan, dll..." class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:ring-2 focus:ring-zinc-500 outline-none transition-all"></textarea>
-          </div>
-
-          <!-- Box QRIS -->
-          <div class="mb-5 p-5 bg-zinc-950 border border-zinc-800 rounded-xl text-center flex flex-col items-center">
-            <span class="block text-sm font-bold text-white mb-4 uppercase tracking-widest">Pembayaran QRIS</span>
-            <img src="qris.png" alt="QRIS Moeratic Florist" class="w-48 h-auto mb-4 rounded-lg border border-zinc-700 p-2 bg-white">
-            <p class="text-xs text-zinc-500">Scan kode QR di atas untuk transfer, lalu unggah buktinya di bawah ini.</p>
-          </div>
-
-          <div class="mb-8">
-            <label class="block text-sm font-semibold mb-2 text-zinc-400">Upload Bukti Bayar</label>
-            <input type="file" id="buktiBayar" accept="image/*" required class="w-full border border-zinc-700 rounded-lg p-2 text-sm text-zinc-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-bold file:bg-white file:text-black hover:file:bg-zinc-200 transition-all bg-zinc-950">
-          </div>
-
-          <button type="submit" id="btnSubmit" class="w-full bg-white hover:bg-zinc-200 text-black font-extrabold tracking-wide py-3.5 rounded-lg transition-all shadow-lg uppercase">
-            Kirim Pesanan
-          </button>
-        </form>
-
-        <div id="statusMsg" class="mt-5 text-center font-semibold hidden"></div>
+  <!-- FOOTER PERMANEN (SELALU MUNCUL DI SEMUA HALAMAN) -->
+  <footer class="max-w-xl w-full mx-auto p-4 md:p-6 pt-0">
+    <div class="bg-zinc-900 p-6 rounded-2xl shadow-xl border border-zinc-800 text-center">
+      <h3 class="text-sm font-bold text-white mb-4 uppercase tracking-widest border-b border-zinc-800 pb-3">Tetap Terhubung</h3>
+      <div class="flex flex-col gap-3">
+        <!-- Ganti href dengan link Instagram Anda -->
+        <a href="https://instagram.com/moeraticflorist" target="_blank" class="block w-full bg-zinc-950 border border-zinc-800 hover:border-zinc-600 text-zinc-300 py-3 rounded-lg text-sm font-semibold transition-all">
+          @moeraticflorist di Instagram
+        </a>
+        <!-- Ganti href dengan link WA (wa.me) Anda -->
+        <a href="https://wa.me/628123456789" target="_blank" class="block w-full bg-zinc-950 border border-zinc-800 hover:border-zinc-600 text-zinc-300 py-3 rounded-lg text-sm font-semibold transition-all">
+          Hubungi Admin (WhatsApp)
+        </a>
       </div>
     </div>
-  </main>
+    <p class="text-center text-xs text-zinc-600 mt-6 mb-4">&copy; 2026 Moeratic Florist. All rights reserved.</p>
+  </footer>
 
   <script>
     const btnMenuInfo = document.getElementById('btnMenuInfo');
@@ -168,6 +171,7 @@
       btnMenuInfo.classList.remove('text-zinc-500', 'border-transparent');
       btnMenuForm.classList.add('text-zinc-500', 'border-transparent');
       btnMenuForm.classList.remove('text-white', 'border-white');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function showForm() {
@@ -182,7 +186,7 @@
 
     btnMenuInfo.addEventListener('click', showInfo);
     btnMenuForm.addEventListener('click', showForm);
-    btnPesanSekarang.addEventListener('click', showForm);
+    if(btnPesanSekarang) btnPesanSekarang.addEventListener('click', showForm);
 
     // GANTI URL DI BAWAH DENGAN URL APPS SCRIPT ANDA
     const SCRIPT_URL = "MASUKKAN_URL_APPS_SCRIPT_ANDA_DISINI";
