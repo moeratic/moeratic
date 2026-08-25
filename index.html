@@ -572,16 +572,9 @@
         };
 e.target.querySelector('button[type="submit"]').disabled = true;
 
-            try {
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify(payload)
-                });
-
-                alert("Pendaftaran member berh// 1. TAMBAHKAN BARIS INI (Sebelum try / baris 573)
-            e.target.querySelector('button[type="submit"]').disabled = true;
+         // Matikan tombol submit agar tidak terklik 2x
+            const btnSubmit = e.target.querySelector('button[type="submit"]');
+            if (btnSubmit) btnSubmit.disabled = true;
 
             try {
                 await fetch(SCRIPT_URL, {
@@ -600,11 +593,8 @@ e.target.querySelector('button[type="submit"]').disabled = true;
             } catch (error) {
                 console.error("Error:", error);
                 alert("Terjadi kesalahan saat menyimpan data.");
-                
-                // 2. TAMBAHKAN BARIS INI (Tepat di bawah alert error / setelah baris 590)
-                e.target.querySelector('button[type="submit"]').disabled = false;
-        }
-    }
+                if (btnSubmit) btnSubmit.disabled = false;
+            }
         });
   </script>
 </body>
