@@ -590,6 +590,31 @@
             alert("Terjadi kesalahan saat menyimpan data.");
         }
     }
+    <!-- ... batas akhir elemen HTML Anda ... -->
+
+    <script>
+        const form = document.getElementById('formPendaftaran');
+        const submitBtn = document.getElementById('btnSubmit');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Memproses...';
+
+            try {
+                const response = await fetch('URL_SCRIPT_ANDA', {
+                    method: 'POST',
+                    body: new FormData(form)
+                });
+                alert('Pendaftaran Berhasil!');
+                form.reset();
+            } catch (error) {
+                alert('Terjadi kesalahan!');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Daftar';
+            }
+        });
   </script>
 </body>
 </html>
