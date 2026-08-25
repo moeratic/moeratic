@@ -530,13 +530,13 @@
           namaFile: fileName
         };
 
-       await fetch(_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'text/plain;charset=utf-8',
-            },
-            body: JSON.stringify(payload)
-        });
+      await fetch(SCRIPT_URL, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'text/plain;charset=utf-8',
+    },
+    body: JSON.stringify(payload)
+});
 
         statusMsg.innerText = "Pesanan berhasil dikirim!";
         statusMsg.className = "mt-5 text-center font-bold text-white bg-zinc-800 py-3 rounded-lg border border-zinc-700";
