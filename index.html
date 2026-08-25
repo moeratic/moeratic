@@ -544,10 +544,12 @@
         document.getElementById('orderForm').reset();
         cekStatusMember();
 
-      } catch (err) {
-        statusMsg.innerText = "Terjadi kesalahan, coba lagi.";
-        statusMsg.className = "mt-5 text-center font-bold text-red-400 bg-red-950 py-3 rounded-lg border border-red-900";
-        statusMsg.classList.remove('hidden');
+     } catch (err) {
+    console.error("DETAIL ERROR:", err);
+    statusMsg.innerText = "Gagal: " + err.toString();
+    statusMsg.className = "mt-5 text-center font-bold text-red-400 bg-red-950 py-3 rounded-lg border border-red-900";
+    statusMsg.classList.remove('hidden');
+        
       } finally {
         btn.innerText = "KIRIM PESANAN";
         btn.disabled = false;
