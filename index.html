@@ -562,40 +562,39 @@
       });
     }
               async function simpanMember(event) {
-        event.preventDefault();
+    event.preventDefault();
 
-        var payload = {
-            jenis: "pendaftaran_member",
-            nama: document.getElementById('authNama').value,
-            whatsapp: document.getElementById('authWhatsapp').value,
-            alamat: document.getElementById('authAlamat').value
-        };
-e.target.querySelector('button[type="submit"]').disabled = true;
+    var payload = {
+        jenis: "pendaftaran_member",
+        nama: document.getElementById('authNama').value,
+        whatsapp: document.getElementById('authWhatsapp').value,
+        alamat: document.getElementById('authAlamat').value
+    };
 
-         // Matikan tombol submit agar tidak terklik 2x
-            const btnSubmit = e.target.querySelector('button[type="submit"]');
-            if (btnSubmit) btnSubmit.disabled = true;
+    // Matikan tombol submit agar tidak terklik 2x
+    const btnSubmit = event.target.querySelector('button[type="submit"]');
+    if (btnSubmit) btnSubmit.disabled = true;
 
-            try {
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify(payload)
-                });
-
-                alert("Pendaftaran member berhasil!");
-                localStorage.setItem('moeratic_member', JSON.stringify(payload));
-                if (typeof tutupModalAuth === 'function') {
-                    tutupModalAuth();
-                }
-                location.reload();
-            } catch (error) {
-                console.error("Error:", error);
-                alert("Terjadi kesalahan saat menyimpan data.");
-                if (btnSubmit) btnSubmit.disabled = false;
-            }
+    try {
+        await fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
         });
+
+        alert("Pendaftaran member berhasil!");
+        localStorage.setItem('moeratic_member', JSON.stringify(payload));
+        if (typeof tutupModalAuth === 'function') {
+            tutupModalAuth();
+        }
+        location.reload();
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Terjadi kesalahan saat menyimpan data.");
+        if (btnSubmit) btnSubmit.disabled = false;
+    }
+}
   </script>
 </body>
 </html>
