@@ -237,6 +237,38 @@
     const KATALOG_API_URL = "https://script.google.com/macros/s/AKfycbwqAV6dUXQGFRpPkf0L9q1bPZb_FeiifOgukEK487TOG69VRJ_PiKOmiNFi3wH-s5yfSA/exec";
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxzFN-yS0aQm3vEH87hriVqHqro9gmXqthY_xVmJQeevyD3M-5jpvGzuSwNeCoZEb6oOg/exec";
 
+    <!-- ... kode HTML lainnya ... -->
+
+    <script>
+        // Variabel URL yang sebelumnya sudah Anda buat
+        const KATALOG_API_URL = "https://script.google.com/macros/s/.../exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/.../exec";
+
+        // --- TEMPELKAN FUNGSI simpanMember DI SINI ---
+        async function simpanMember(event) {
+            event.preventDefault(); 
+
+            var payload = {
+                jenis: "pendaftaran_member",
+                nama: document.getElementById('authNama').value,
+                whatsapp: document.getElementById('authWhatsapp').value,
+                alamat: document.getElementById('authAlamat').value
+            };
+
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                });
+
+                alert("Pendaftaran member berhasil!");
+                location.reload();
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Terjadi kesalahan saat menyimpan data.");
+    
     let dataKatalogGlobal = [];
 
     // Toggle Dropdown Profil
@@ -519,7 +551,7 @@
           namaFile: fileName
         };
 
-        await fetch(SCRIPT_URL, {
+        await fetch(_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
