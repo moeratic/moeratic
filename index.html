@@ -50,16 +50,13 @@
       </div>
     </header>
 
-    <!-- Navigasi 3 Tab (Info, Katalog, Pesan) -->
+    <!-- Navigasi 2 Tab (Info & Katalog saja) -->
     <nav class="flex justify-center border-b border-zinc-800 bg-zinc-900/50 backdrop-blur-sm sticky top-0 z-10">
-      <button id="btnMenuInfo" class="px-4 py-4 text-xs md:text-sm font-bold text-white border-b-2 border-white transition-all w-1/3 text-center uppercase tracking-wider">
+      <button id="btnMenuInfo" class="px-6 py-4 text-xs md:text-sm font-bold text-white border-b-2 border-white transition-all w-1/2 text-center uppercase tracking-wider">
         Info & Promo
       </button>
-      <button id="btnMenuKatalog" class="px-4 py-4 text-xs md:text-sm font-bold text-zinc-500 border-b-2 border-transparent hover:text-zinc-300 transition-all w-1/3 text-center uppercase tracking-wider">
+      <button id="btnMenuKatalog" class="px-6 py-4 text-xs md:text-sm font-bold text-zinc-500 border-b-2 border-transparent hover:text-zinc-300 transition-all w-1/2 text-center uppercase tracking-wider">
         Katalog
-      </button>
-      <button id="btnMenuForm" class="px-4 py-4 text-xs md:text-sm font-bold text-zinc-500 border-b-2 border-transparent hover:text-zinc-300 transition-all w-1/3 text-center uppercase tracking-wider">
-        Pesan
       </button>
     </nav>
 
@@ -96,7 +93,7 @@
           </div>
         </div>
 
-        <button id="btnPesanDariInfo" class="w-full bg-white hover:bg-zinc-200 text-black font-extrabold tracking-wide py-4 rounded-xl transition-all shadow-lg uppercase">
+        <button id="btnPesanDariInfo" onclick="prosesMauPesan()" class="w-full bg-white hover:bg-zinc-200 text-black font-extrabold tracking-wide py-4 rounded-xl transition-all shadow-lg uppercase">
           Buat Pesanan Sekarang
         </button>
       </div>
@@ -121,14 +118,20 @@
         </div>
       </div>
 
-      <!-- HALAMAN 3: FORMULIR PEMESANAN -->
+      <!-- HALAMAN 3: FORMULIR PEMESANAN (Tersembunyi hingga diakses via alur member) -->
       <div id="pageForm" class="fade-in hidden">
         <div class="bg-zinc-900 p-6 rounded-2xl shadow-2xl border border-zinc-800">
-          <div id="bannerMemberAktif" class="hidden mb-5 p-3 bg-emerald-950/40 border border-emerald-800 rounded-xl text-emerald-300 text-xs text-center">
+          <div class="mb-5 p-3 bg-emerald-950/40 border border-emerald-800 rounded-xl text-emerald-300 text-xs text-center">
             ✨ Anda memesan sebagai member terdaftar. Data terisi otomatis!
           </div>
 
-          <h2 class="text-xl font-bold text-white mb-6 text-center uppercase tracking-wider">Formulir Pemesanan</h2>
+          <div class="flex justify-between items-center mb-6">
+            <button onclick="setActiveTab('info')" class="text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-3 py-2 rounded-lg border border-zinc-700 transition-all">
+              &larr; Kembali
+            </button>
+            <h2 class="text-xl font-bold text-white uppercase tracking-wider text-center flex-grow">Formulir Pemesanan</h2>
+            <div class="w-12"></div>
+          </div>
           
           <form id="orderForm">
             <div class="mb-5">
@@ -190,7 +193,7 @@
       <button onclick="tutupModalAuth()" class="absolute top-4 right-4 text-zinc-400 hover:text-white font-bold text-lg">&times;</button>
       
       <h3 class="text-xl font-bold text-white mb-2 text-center uppercase tracking-wider">Pendaftaran Member</h3>
-      <p class="text-zinc-400 text-xs text-center mb-6">Simpan data Anda sekali, agar otomatis terisi saat melakukan pemesanan berikutnya.</p>
+      <p class="text-zinc-400 text-xs text-center mb-6">Silakan lengkapi data Anda untuk melanjutkan pemesanan.</p>
       
       <form id="formAuth" onsubmit="simpanMember(event)">
         <div class="mb-4">
@@ -206,7 +209,7 @@
           <textarea id="authAlamat" rows="2" required placeholder="Alamat lengkap..." class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white text-sm outline-none focus:ring-2 focus:ring-zinc-500"></textarea>
         </div>
         <button type="submit" class="w-full bg-white hover:bg-zinc-200 text-black font-extrabold py-3 rounded-lg text-sm uppercase tracking-wide transition-all shadow">
-          Simpan & Masuk Sebagai Member
+          Simpan & Lanjutkan Pemesanan
         </button>
       </form>
     </div>
@@ -259,13 +262,11 @@
       const infoMemberNama = document.getElementById('infoMemberNama');
       const textMenuAuth = document.getElementById('textMenuAuth');
       const menuKeluar = document.getElementById('menuKeluar');
-      const bannerMemberAktif = document.getElementById('bannerMemberAktif');
 
       if (member) {
         infoMemberNama.textContent = member.nama;
         textMenuAuth.textContent = "Ubah Data Member";
         menuKeluar.classList.remove('hidden');
-        if(bannerMemberAktif) bannerMemberAktif.classList.remove('hidden');
 
         if(document.getElementById('nama')) document.getElementById('nama').value = member.nama;
         if(document.getElementById('whatsapp')) document.getElementById('whatsapp').value = member.whatsapp;
@@ -274,7 +275,6 @@
         infoMemberNama.textContent = "Belum Masuk";
         textMenuAuth.textContent = "Daftar / Masuk Member";
         menuKeluar.classList.add('hidden');
-        if(bannerMemberAktif) bannerMemberAktif.classList.add('hidden');
       }
     }
 
@@ -303,7 +303,9 @@
       localStorage.setItem('moeratic_member', JSON.stringify(memberData));
       tutupModalAuth();
       cekStatusMember();
-      alert("Berhasil menyimpan data member!");
+      
+      // Setelah simpan data member, otomatis arahkan ke halaman form pemesanan
+      setActiveTab('form');
     }
 
     function logoutMember() {
@@ -313,11 +315,21 @@
       alert("Anda telah keluar dari akun member.");
     }
 
-    // Navigasi Tab
+    // Alur Klik Tombol Pesan (Cek Member Dulu)
+    function prosesMauPesan() {
+      const member = JSON.parse(localStorage.getItem('moeratic_member'));
+      if (!member) {
+        // Jika belum jadi member, buka modal daftar dulu
+        bukaModalAuth();
+      } else {
+        // Jika sudah member, langsung ke form pesanan
+        setActiveTab('form');
+      }
+    }
+
+    // Navigasi Tab (Hanya Info & Katalog)
     const btnMenuInfo = document.getElementById('btnMenuInfo');
     const btnMenuKatalog = document.getElementById('btnMenuKatalog');
-    const btnMenuForm = document.getElementById('btnMenuForm');
-    const btnPesanDariInfo = document.getElementById('btnPesanDariInfo');
     
     const pageInfo = document.getElementById('pageInfo');
     const pageKatalog = document.getElementById('pageKatalog');
@@ -337,39 +349,46 @@
     }
 
     function setActiveTab(active) {
-      [btnMenuInfo, btnMenuKatalog, btnMenuForm].forEach(btn => {
-        btn.classList.add('text-zinc-500', 'border-transparent');
-        btn.classList.remove('text-white', 'border-white');
+      [btnMenuInfo, btnMenuKatalog].forEach(btn => {
+        if(btn) {
+          btn.classList.add('text-zinc-500', 'border-transparent');
+          btn.classList.remove('text-white', 'border-white');
+        }
       });
       [pageInfo, pageKatalog, pageForm].forEach(page => page.classList.add('hidden'));
 
       if(active === 'info') {
         pageInfo.classList.remove('hidden');
-        btnMenuInfo.classList.add('text-white', 'border-white');
-        btnMenuInfo.classList.remove('text-zinc-500', 'border-transparent');
+        if(btnMenuInfo) {
+          btnMenuInfo.classList.add('text-white', 'border-white');
+          btnMenuInfo.classList.remove('text-zinc-500', 'border-transparent');
+        }
       } else if(active === 'katalog') {
         pageKatalog.classList.remove('hidden');
-        btnMenuKatalog.classList.add('text-white', 'border-white');
-        btnMenuKatalog.classList.remove('text-zinc-500', 'border-transparent');
+        if(btnMenuKatalog) {
+          btnMenuKatalog.classList.add('text-white', 'border-white');
+          btnMenuKatalog.classList.remove('text-zinc-500', 'border-transparent');
+        }
         kembaliKeKategori();
       } else if(active === 'form') {
         pageForm.classList.remove('hidden');
-        btnMenuForm.classList.add('text-white', 'border-white');
-        btnMenuForm.classList.remove('text-zinc-500', 'border-transparent');
         cekStatusMember();
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    btnMenuInfo.addEventListener('click', () => setActiveTab('info'));
-    btnMenuKatalog.addEventListener('click', () => setActiveTab('katalog'));
-    btnMenuForm.addEventListener('click', () => setActiveTab('form'));
-    if(btnPesanDariInfo) btnPesanDariInfo.addEventListener('click', () => setActiveTab('form'));
+    if(btnMenuInfo) btnMenuInfo.addEventListener('click', () => setActiveTab('info'));
+    if(btnMenuKatalog) btnMenuKatalog.addEventListener('click', () => setActiveTab('katalog'));
 
     function pilihProduk(namaProduk) {
-      setActiveTab('form');
-      const selectPesanan = document.getElementById('pesanan');
-      selectPesanan.value = namaProduk;
+      const member = JSON.parse(localStorage.getItem('moeratic_member'));
+      if (!member) {
+        bukaModalAuth();
+      } else {
+        setActiveTab('form');
+        const selectPesanan = document.getElementById('pesanan');
+        if(selectPesanan) selectPesanan.value = namaProduk;
+      }
     }
 
     async function muatKatalog() {
